@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> VideoEval-Pro </title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
+  <link rel="stylesheet" href="./static/css/video-player.css">
+
+  <!-- <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bulma.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script> -->
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/explorer-index.js"></script>
+  <script src="./static/js/question_card.js"></script>
+
+  <script src="./static/js/leaderboard_testmini.js"></script>  
+  <script src="./data/results/output_folders.js" defer></script>
+  <script src="./data/results/model_scores.js" defer></script>
+
+  <script src="./visualizer/data/data_public.js" defer></script>
+
+  <style>
+    .no-sort {
+        cursor: default;
+        pointer-events: none;
+        background-image: none !important; /* Remove the sort arrow */
+    }
+  </style>
+
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold">
+            <span class="VideoEval-Pro" style="vertical-align: middle">VideoEval-Pro</span>
+            </h1>
+          <h2 class="subtitle is-3 publication-subtitle", style="margin-bottom: 20px;">
+            A More Robust and Realistic QA Evaluation benchmark of <br> Multi-modal LLMs in long video understanding
+          </h2>
+          
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                  <a href="https://iamtonymwt.github.io/" target="_blank">Wentao Ma</a><sup>*,2</sup>,
+              </span>
+              <span class="author-block">
+                  <a href="https://cs.uwaterloo.ca/~w2ren/" target="_blank">Weiming Ren</a><sup>*,1,3</sup>,
+              </span>
+              <span class="author-block">
+                  <a href="https://jymmmmm.github.io/" target="_blank">Yiming Jia</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=V3ZBIT4AAAAJ&hl=en" target="_blank">Zhuofeng Li</a><sup>4</sup>,
+              </span>
+              <span class="author-block">
+                  <a href="https://scholar.google.ca/citations?user=z0phsK4AAAAJ&hl=zh-CN" target="_blank">Ping Nie</a><sup>5</sup>,
+              </span>
+              <span class="author-block">
+                  <a href="https://scholar.google.com/citations?hl=en&user=qyTrq4kAAAAJ" target="_blank">Ge Zhang</a><sup>1,6</sup>,
+              </span>
+              <span class="author-block">
+                  <a href="https://wenhuchen.github.io/" target="_blank">Wenhu Chen</a><sup>1,3</sup>
+              </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+              <span class="author-block">
+              <sup>1</sup>University of Waterloo,
+              <sup>2</sup>University of Toronto,
+              <sup>3</sup>Vector Institute,
+              <br>
+              <sup>4</sup>Shanghai University,
+              <sup>5</sup>Independent,
+              <sup>6</sup>M-A-P
+              <br/>
+              </span>
+              <br>
+              <span class="author-block">
+                  <small>
+                      *Equal Contribution
+                  </small>
+              </span>
+              <br/>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/~"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/TIGER-AI-Lab/VideoEval-Pro"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>GitHub</span>
+                  </a>
+              </span>
+              <!-- Leaderboard Link. -->
+              <!-- <span class="link-block">
+                <a href="#leaderboard"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <p style="font-size:18px">🏆</p>
+                  </span>
+                  <span>Leaderboard</span>
+                </a>
+              </span> -->
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          Large multimodal models (LMMs) have recently emerged as a powerful tool for <strong>long video understanding (LVU)</strong>, prompting the development of standardized LVU benchmarks to evaluate their performance. However, our investigation reveals a rather sober lesson for existing LVU benchmarks. First, most existing benchmarks <strong>rely heavily on multiple-choice questions (MCQs)</strong>, whose evaluation results are inflated due to the possibility of guessing the correct answer; Second, a significant portion of questions in these benchmarks have <strong>strong priors</strong> to allow models to answer directly without even reading the input video. For example, Gemini-1.5-Pro can achieve over 50% accuracy given a random frame from a long video on Video-MME. We also observe that increasing the number of frames does not necessarily lead to improvement on existing benchmarks, which is counterintuitive. As a result, the validity and robustness of current LVU benchmarks are undermined, impeding a faithful assessment of LMMs' long‑video understanding capability. To tackle this problem, we propose <strong>VideoEval-Pro</strong>, a realistic LVU benchmark containing questions with <strong>open‑ended short‑answer</strong>, which truly require understanding the entire video. VideoEval-Pro assesses both <strong>segment‑level</strong> and <strong>full‑video</strong> understanding through <strong>perception</strong> and <strong>reasoning</strong> tasks. By evaluating 21 proprietary and open-source video LMMs, we conclude the following findings: (1) video LMMs show drastic performance (>25%) drops on open-ended questions compared with MCQs; (2) surprisingly, higher MCQ scores do not lead to higher open-ended scores on VideoEval-Pro; (3) compared to other MCQ benchmarks, VideoEval-Pro benefits more from increasing the number of input frames. Our results show that VideoEval-Pro offers a more realistic and reliable measure of long video understanding, providing a clearer view of progress in this domain.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    updateRowNumbers();
+    document.querySelector("#results").addEventListener("click", updateRowNumbers);
+  });
+
+  function updateRowNumbers() {
+    const rows = document.querySelectorAll("#results tbody tr");
+    rows.forEach((row, index) => {
+      row.querySelector("td").innerText = index + 1;
+    });
+  }
+</script>
+
+<section class="section">
+  <div class="container">
+    
+    <div class="columns is-centered">
+      <div class="column is-full has-text-centered content">
+
+        <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
+        <div class="content">
+          <p class="mt-3">Main results of our VideoEval-Pro benchmark. <br>∆ indicates the gap between MCQ
+            and open-ended questions. LP, LR, HP and HR correspond to Local Perception, Local Reasoning, Holistic Perception and Holistic Reasoning tasks.<br/>
+          </p>
+
+          <table class="js-sort-table" id="results" style="margin-left: auto; margin-right: auto;">
+            <thead>
+              <tr>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 50px;" data-js-sort-colNum="none"><strong>#</strong></th>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 155px;" data-js-sort-colNum="none"><strong>Model</strong></th>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 25px;" data-js-sort-colNum="none"><strong>LLM <br>Params</strong></th>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 75px;" data-js-sort-colNum="none"><strong>Frames</strong></th>
+                <th colspan="2" style="vertical-align: middle; width: 300px;" data-js-sort-colNum="5"><strong>LP (%)</strong></th>
+                <th colspan="2" style="vertical-align: middle; width: 300px;" data-js-sort-colNum="7"><strong>LR (%)</strong></th>
+                <th colspan="2" style="vertical-align: middle; width: 300px;" data-js-sort-colNum="9"><strong>HP (%)</strong></th>
+                <th colspan="2" style="vertical-align: middle; width: 300px;" data-js-sort-colNum="11"><strong>HR (%)</strong></th>
+                <th colspan="3" style="vertical-align: middle; width: 450px;" data-js-sort-colNum="14"><strong>Overall (%)</strong></th>
+              </tr>
+              <tr>
+                <th data-js-sort-colNum="4"><strong>Open</strong></th>
+                <th data-js-sort-colNum="5"><strong>MCQ</strong></th>
+                <th data-js-sort-colNum="6"><strong>Open</strong></th>
+                <th data-js-sort-colNum="7"><strong>MCQ</strong></th>
+                <th data-js-sort-colNum="8"><strong>Open</strong></th>
+                <th data-js-sort-colNum="9"><strong>MCQ</strong></th>
+                <th data-js-sort-colNum="10"><strong>Open</strong></th>
+                <th data-js-sort-colNum="11"><strong>MCQ</strong></th>
+                <th data-js-sort-colNum="12"><strong>Open</strong></th>
+                <th data-js-sort-colNum="13"><strong>MCQ</strong></th>
+                <th data-js-sort-colNum="14"><strong>∆</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">GPT-4o</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Proprietary</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">- </td>
+                <td style="vertical-align: middle;">256 </td>
+                <td style="vertical-align: middle;">39.4</td>
+                <td style="vertical-align: middle;">64.8</td>
+                <td style="vertical-align: middle;">23.1</td>
+                <td style="vertical-align: middle;">62.6</td>
+                <td style="vertical-align: middle;">26.4</td>
+                <td style="vertical-align: middle;">42.1</td> 
+                <td style="vertical-align: middle;">29.2</td>
+                <td style="vertical-align: middle;">50.4</td>
+                <td style="vertical-align: middle;"><b class="">34.2</b></td>
+                <td style="vertical-align: middle;">59.5</td>     
+                <td style="vertical-align: middle;">25.3</td>                              
+              </tr>
+
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">Gemini-1.5-Flash</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Proprietary</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">-</td>
+                <td style="vertical-align: middle;">512</td>
+                <td style="vertical-align: middle;">41.5</td>
+                <td style="vertical-align: middle;">65.5</td>
+                <td style="vertical-align: middle;">25.9</td>
+                <td style="vertical-align: middle;">63.9</td>
+                <td style="vertical-align: middle;">27.3</td>
+                <td style="vertical-align: middle;">36.4</td>
+                <td style="vertical-align: middle;">25.8</td>
+                <td style="vertical-align: middle;">55.7</td>
+                <td style="vertical-align: middle;"><b class="">35.1</b></td>
+                <td style="vertical-align: middle;">60.6</td>
+                <td style="vertical-align: middle;">25.5</td>
+              </tr>
+              
+              <tr>1
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">Gemini-2.5-Flash</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Proprietary</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">-</td>
+                <td style="vertical-align: middle;">256</td>
+                <td style="vertical-align: middle;">42.4</td>
+                <td style="vertical-align: middle;">64.1</td>
+                <td style="vertical-align: middle;">30.6</td>
+                <td style="vertical-align: middle;">65.3</td>
+                <td style="vertical-align: middle;">25.6</td>
+                <td style="vertical-align: middle;">33.9</td>
+                <td style="vertical-align: middle;">26.9</td>
+                <td style="vertical-align: middle;">54.2</td>
+                <td style="vertical-align: middle;"><b class="">36.3</b></td>
+                <td style="vertical-align: middle;">59.3</td>
+                <td style="vertical-align: middle;">23.0</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">Gemini-1.5-Pro</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Proprietary</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">-</td>
+                <td style="vertical-align: middle;">512</td>
+                <td style="vertical-align: middle;">43.7</td>
+                <td style="vertical-align: middle;">66.7</td>
+                <td style="vertical-align: middle;">32.7</td>
+                <td style="vertical-align: middle;">69.4</td>
+                <td style="vertical-align: middle;">35.5</td>
+                <td style="vertical-align: middle;">40.5</td>
+                <td style="vertical-align: middle;">31.8</td>
+                <td style="vertical-align: middle;">61.0</td>
+                <td style="vertical-align: middle;"><b class="">39.3</b></td>
+                <td style="vertical-align: middle;">63.4</td>
+                <td style="vertical-align: middle;">24.1</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">GPT-4.1-mini</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Proprietary</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">-</td>
+                <td style="vertical-align: middle;">256</td>
+                <td style="vertical-align: middle;">46.0</td>
+                <td style="vertical-align: middle;">68.6</td>
+                <td style="vertical-align: middle;">32.0</td>
+                <td style="vertical-align: middle;">68.7</td>
+                <td style="vertical-align: middle;">27.3</td>
+                <td style="vertical-align: middle;">38.8</td>
+                <td style="vertical-align: middle;">32.6</td>
+                <td style="vertical-align: middle;">57.6</td>
+                <td style="vertical-align: middle;"><b class="">39.9</b></td>
+                <td style="vertical-align: middle;">63.5</td>
+                <td style="vertical-align: middle;">23.6</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">GPT-4.1</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Proprietary</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">-</td>
+                <td style="vertical-align: middle;">256</td>
+                <td style="vertical-align: middle;">47.2</td>
+                <td style="vertical-align: middle;">68.8</td>
+                <td style="vertical-align: middle;">29.9</td>
+                <td style="vertical-align: middle;">68.7</td>
+                <td style="vertical-align: middle;">28.1</td>
+                <td style="vertical-align: middle;">38.0</td>
+                <td style="vertical-align: middle;">34.5</td>
+                <td style="vertical-align: middle;">59.5</td>
+                <td style="vertical-align: middle;"><b class="">40.8</b></td>
+                <td style="vertical-align: middle;">64.0</td>
+                <td style="vertical-align: middle;">23.2</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">Video-LLaVA</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">8B</td>
+                <td style="vertical-align: middle;">8</td>
+                <td style="vertical-align: middle;">13.2</td>
+                <td style="vertical-align: middle;">27.5</td>
+                <td style="vertical-align: middle;">6.1</td>
+                <td style="vertical-align: middle;">33.3</td>
+                <td style="vertical-align: middle;">14.0</td>
+                <td style="vertical-align: middle;">24.8</td>
+                <td style="vertical-align: middle;">6.1</td>
+                <td style="vertical-align: middle;">26.5</td>
+                <td style="vertical-align: middle;"><b class="">11.0</b></td>
+                <td style="vertical-align: middle;">27.7</td>
+                <td style="vertical-align: middle;">16.7</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">Mantis-Idefics2</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">8B</td>
+                <td style="vertical-align: middle;">24</td>
+                <td style="vertical-align: middle;">17.8</td>
+                <td style="vertical-align: middle;">33.2</td>
+                <td style="vertical-align: middle;">9.5</td>
+                <td style="vertical-align: middle;">29.9</td>
+                <td style="vertical-align: middle;">16.5</td>
+                <td style="vertical-align: middle;">16.5</td>
+                <td style="vertical-align: middle;">8.3</td>
+                <td style="vertical-align: middle;">29.9</td>
+                <td style="vertical-align: middle;"><b class="">14.8</b></td>
+                <td style="vertical-align: middle;">30.6</td>
+                <td style="vertical-align: middle;">15.8</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">LongVA</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">64</td>
+                <td style="vertical-align: middle;">20.5</td>
+                <td style="vertical-align: middle;">43.3</td>
+                <td style="vertical-align: middle;">6.8</td>
+                <td style="vertical-align: middle;">33.3</td>
+                <td style="vertical-align: middle;">19.0</td>
+                <td style="vertical-align: middle;">24.0</td>
+                <td style="vertical-align: middle;">9.5</td>
+                <td style="vertical-align: middle;">31.8</td>
+                <td style="vertical-align: middle;"><b class="">16.5</b></td>
+                <td style="vertical-align: middle;">38.0</td>
+                <td style="vertical-align: middle;">21.5</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">Phi-4-Mini</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">5.6B</td>
+                <td style="vertical-align: middle;">128</td>
+                <td style="vertical-align: middle;">19.2</td>
+                <td style="vertical-align: middle;">46.4</td>
+                <td style="vertical-align: middle;">12.9</td>
+                <td style="vertical-align: middle;">47.6</td>
+                <td style="vertical-align: middle;">18.2</td>
+                <td style="vertical-align: middle;">30.6</td>
+                <td style="vertical-align: middle;">10.2</td>
+                <td style="vertical-align: middle;">31.4</td>
+                <td style="vertical-align: middle;"><b class="">16.5</b></td>
+                <td style="vertical-align: middle;">42.0</td>
+                <td style="vertical-align: middle;">25.5</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">LongLLaVA</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">9B</td>
+                <td style="vertical-align: middle;">512</td>
+                <td style="vertical-align: middle;">21.7</td>
+                <td style="vertical-align: middle;">41.2</td>
+                <td style="vertical-align: middle;">15.0</td>
+                <td style="vertical-align: middle;">34.0</td>
+                <td style="vertical-align: middle;">14.0</td>
+                <td style="vertical-align: middle;">29.8</td>
+                <td style="vertical-align: middle;">10.2</td>
+                <td style="vertical-align: middle;">29.2</td>
+                <td style="vertical-align: middle;"><b class="">17.8</b></td>
+                <td style="vertical-align: middle;">36.9</td>
+                <td style="vertical-align: middle;">19.1</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">Video-XL</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">512</td>
+                <td style="vertical-align: middle;">22.3</td>
+                <td style="vertical-align: middle;">41.9</td>
+                <td style="vertical-align: middle;">15.0</td>
+                <td style="vertical-align: middle;">34.0</td>
+                <td style="vertical-align: middle;">18.2</td>
+                <td style="vertical-align: middle;">28.1</td>
+                <td style="vertical-align: middle;">10.2</td>
+                <td style="vertical-align: middle;">29.2</td>
+                <td style="vertical-align: middle;"><b class="">18.6</b></td>
+                <td style="vertical-align: middle;">38.2</td>
+                <td style="vertical-align: middle;">19.6</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">LongVU</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">512</td>
+                <td style="vertical-align: middle;">25.9</td>
+                <td style="vertical-align: middle;">45.6</td>
+                <td style="vertical-align: middle;">12.9</td>
+                <td style="vertical-align: middle;">38.8</td>
+                <td style="vertical-align: middle;">19.8</td>
+                <td style="vertical-align: middle;">24.0</td>
+                <td style="vertical-align: middle;">17.4</td>
+                <td style="vertical-align: middle;">37.1</td>
+                <td style="vertical-align: middle;"><b class="">22.1</b></td>
+                <td style="vertical-align: middle;">41.0</td>
+                <td style="vertical-align: middle;">18.9</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">Vamba</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">10B</td>
+                <td style="vertical-align: middle;">512</td>
+                <td style="vertical-align: middle;">28.1</td>
+                <td style="vertical-align: middle;">52.4</td>
+                <td style="vertical-align: middle;">10.9</td>
+                <td style="vertical-align: middle;">40.0</td>
+                <td style="vertical-align: middle;">21.5</td>
+                <td style="vertical-align: middle;">26.4</td>
+                <td style="vertical-align: middle;">12.5</td>
+                <td style="vertical-align: middle;">37.9</td>
+                <td style="vertical-align: middle;"><b class="">22.3</b></td>
+                <td style="vertical-align: middle;">45.7</td>
+                <td style="vertical-align: middle;">23.4</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">LLaVA-Video</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">64</td>
+                <td style="vertical-align: middle;">28.5</td>
+                <td style="vertical-align: middle;">53.5</td>
+                <td style="vertical-align: middle;">13.6</td>
+                <td style="vertical-align: middle;">47.6</td>
+                <td style="vertical-align: middle;">20.7</td>
+                <td style="vertical-align: middle;">28.9</td>
+                <td style="vertical-align: middle;">19.3</td>
+                <td style="vertical-align: middle;">40.2</td>
+                <td style="vertical-align: middle;"><b class="">24.2</b></td>
+                <td style="vertical-align: middle;">47.8</td>
+                <td style="vertical-align: middle;">23.6</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">InternVL2.5</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">8B</td>
+                <td style="vertical-align: middle;">64</td>
+                <td style="vertical-align: middle;">28.8</td>
+                <td style="vertical-align: middle;">54.3</td>
+                <td style="vertical-align: middle;">19.7</td>
+                <td style="vertical-align: middle;">46.3</td>
+                <td style="vertical-align: middle;">21.5</td>
+                <td style="vertical-align: middle;">35.5</td>
+                <td style="vertical-align: middle;">16.7</td>
+                <td style="vertical-align: middle;">39.0</td>
+                <td style="vertical-align: middle;"><b class="">24.6</b></td>
+                <td style="vertical-align: middle;">48.5</td>
+                <td style="vertical-align: middle;">23.9</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">InternVL3</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">8B</td>
+                <td style="vertical-align: middle;">64</td>
+                <td style="vertical-align: middle;">30.3</td>
+                <td style="vertical-align: middle;">54.6</td>
+                <td style="vertical-align: middle;">17.0</td>
+                <td style="vertical-align: middle;">49.0</td>
+                <td style="vertical-align: middle;">24.0</td>
+                <td style="vertical-align: middle;">34.7</td>
+                <td style="vertical-align: middle;">13.3</td>
+                <td style="vertical-align: middle;">36.7</td>
+                <td style="vertical-align: middle;"><b class="">24.7</b></td>
+                <td style="vertical-align: middle;">48.4</td>
+                <td style="vertical-align: middle;">23.7</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">Qwen2-VL</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">512</td>
+                <td style="vertical-align: middle;">31.7</td>
+                <td style="vertical-align: middle;">59.3</td>
+                <td style="vertical-align: middle;">14.3</td>
+                <td style="vertical-align: middle;">51.7</td>
+                <td style="vertical-align: middle;">21.5</td>
+                <td style="vertical-align: middle;">28.1</td>
+                <td style="vertical-align: middle;">20.5</td>
+                <td style="vertical-align: middle;">39.0</td>
+                <td style="vertical-align: middle;"><b class="">26.5</b></td>
+                <td style="vertical-align: middle;">48.2</td>
+                <td style="vertical-align: middle;">21.7</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">InternVideo2.5</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">8B</td>
+                <td style="vertical-align: middle;">512</td>
+                <td style="vertical-align: middle;">33.6</td>
+                <td style="vertical-align: middle;">59.8</td>
+                <td style="vertical-align: middle;">17.0</td>
+                <td style="vertical-align: middle;">47.6</td>
+                <td style="vertical-align: middle;">19.8</td>
+                <td style="vertical-align: middle;">34.7</td>
+                <td style="vertical-align: middle;">18.2</td>
+                <td style="vertical-align: middle;">45.8</td>
+                <td style="vertical-align: middle;"><b class="">27.2</b></td>
+                <td style="vertical-align: middle;">53.2</td>
+                <td style="vertical-align: middle;">26.0</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">VideoChat-Flash</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">512</td>
+                <td style="vertical-align: middle;">33.7</td>
+                <td style="vertical-align: middle;">57.7</td>
+                <td style="vertical-align: middle;">16.3</td>
+                <td style="vertical-align: middle;">43.5</td>
+                <td style="vertical-align: middle;">21.5</td>
+                <td style="vertical-align: middle;">33.9</td>
+                <td style="vertical-align: middle;">17.4</td>
+                <td style="vertical-align: middle;">44.7</td>
+                <td style="vertical-align: middle;"><b class="">27.0</b></td>
+                <td style="vertical-align: middle;">51.2</td>
+                <td style="vertical-align: middle;">24.2</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a style="font-size: 16px; margin-left: 5px;">Qwen2.5-VL</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Open-source</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">512</td>
+                <td style="vertical-align: middle;">33.9</td>
+                <td style="vertical-align: middle;">51.7</td>
+                <td style="vertical-align: middle;">15.6</td>
+                <td style="vertical-align: middle;">48.3</td>
+                <td style="vertical-align: middle;">24.8</td>
+                <td style="vertical-align: middle;">31.4</td>
+                <td style="vertical-align: middle;">17.8</td>
+                <td style="vertical-align: middle;">39.8</td>
+                <td style="vertical-align: middle;"><b class="">27.7</b></td>
+                <td style="vertical-align: middle;">46.9</td>
+                <td style="vertical-align: middle;">19.2</td>
+              </tr>
+              
+              
+              
+          
+          </tbody>                                                   
+        </table> 
+
+        <p style=" text-align: left;">
+          * As different candidate models are trained using different numbers of frames, we evaluate each one with inputs of 32, 64, 128, 256, and 512 frames and report its highest score. If a model cannot handle larger inputs (e.g. due to API restrictions or model context length limits), we instead report its best score among the frame counts that fit within its allowable context window
+        </p>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DATASET SECTION -->
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+  <h1 class="title is-1 mathvista_other">
+    <span class="mathvista_other" style="vertical-align: middle">Benchmark</span>
+  </h1>
+  </div>
+</section>
+            
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths" style="width: 100%;">
+        <h2 class="title is-3">Data Examples</h2>
+        <div class="content has-text-justified">
+          <p style="text-align: center;", class="mt-3"><strong>Here we show several interesting cases where the model selects the correct answer in the MCQ setting but fails to produce accurate factual details in the free-form response.</strong>
+          </p>
+
+        <div id="results-carousel" class="carousel results-carousel">  
+          
+            <div class="content has-text-centered">
+              <img src="static/images/qualitative comparisons/qa_1.png" style="width: 90%;"/>
+            </div>
+          
+            <div class="content has-text-centered">
+              <img src="static/images/qualitative comparisons/qa_2.png" style="width: 90%;"/>
+            </div>
+
+            <div class="content has-text-centered">
+              <img src="static/images/qualitative comparisons/qa_3.png" style="width: 90%;"/>
+            </div>
+
+        </div>
+
+          
+        </div>
+      </div> 
+
+        </div>
+      </div>
+    </div>
+    
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <h2 class="title is-3" style="margin-top: 30px;">Benchmark Statistics</h2>
+          
+          <!-- bing tu -->
+          <div class="container-wrapper">
+            <div id="image-container">
+              <img src="static/images/source.png" alt="data-composition" style="max-width: 60%; display: inline-block; margin-left: 200px;"/>
+            </div>
+            <div id="image-container">
+              <img src="static/images/task_type.png" alt="data-composition" style="max-width: 75%; display: inline-block; margin-right: 200px;"/>
+            </div>
+          </div>
+
+        <p style="text-align: center; margin-left: auto; margin-right: auto; width: 50%;"> 
+            (Left) Video and QA source distribution of VideoEval-Pro. <br> (Right) Task type distribution of VideoEval-Pro.<br/>
+        </p>
+
+
+        <p style="text-align: left; margin-left: auto; margin-right: auto; width: 70%;"> 
+        VideoEval-Pro includes a total of 465 videos, with an average length of 38.25 minutes. Among them, 204 videos are between 10 and 30 minutes and 261 videos exceed 30 minutes. For the 1,289 questions used in our benchmark, 371 are associated with videos in the 10–30 minute range, while 918 are based on videos longer than 30 minutes. The average length of an answer is 2.1 words.<br/>
+        </p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <h2 class="title is-3">Benchmark Comparison</h2>
+
+          <div class="container-wrapper">
+            <div id="image-container">
+              <img src="static/images/compare_mcq.png" alt="data-composition" style="max-width: 80%; display: inline-block; margin-left: 200px;"/>
+            </div>
+            <div id="image-container">
+              <img src="static/images/compare_videomme.png" alt="data-composition" style="max-width: 70%; display: inline-block; margin-right: 200px;"/>
+            </div>
+          </div>
+
+          <p style="text-align: center; margin-left: auto; margin-right: auto; width: 100%;"> 
+            Left: MCQ benchmarks yield inflated scores on identical questions (MCQ vs. Open) and can misrepresent model performance (LVBench). <br>Right: VideoEval-Pro cannot be effectively solved with a single input frame, and performance scales consistently with more frames. Video-MME exhibits contradictory trends. <br/>
+          </p>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- RESULTS SECTION -->
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other">Experiment Results</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Proprietary models <strong>VS.</strong> Open-Source models</h2>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/vs.png" alt="grade-lv" width="75%"/>
+              <p>Comparison between proprietary and open-source models on VideoEval-Pro and other standard medium and long video benchmarks.</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Frame Scaling Properties</h2>
+
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/frames_curve.png" alt="" width="90%"/>
+              <p>Comparison between VideoEval-Pro and Video-MME accuracy across five LMMs.</p>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+</section>
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other" id="citation">Citation</h1>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <pre><code>
+
+</code></pre>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container" style="width: 60%;">
+  <style>
+      pre {
+        background-color: #f4f4f4;
+        padding: 5px; /* 调整padding为5px */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow-x: auto; /* 允许水平滚动 */
+    }
+    code {
+        font-family: Consolas, "Courier New", monospace;
+        color: #d63384; /* 代码文本颜色 */
+    }
+  </style>
+
+
+  </div>
+</section>
+
+
+<footer class="footer">
+  <!-- <div class="container"> -->
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p style="text-align: center;">
+            This website is adapted from <a href="https://mathvista.github.io/">MathVista</a>, licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</footer>
+
+</body>
+</html>
+
