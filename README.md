@@ -113,3 +113,31 @@ Each example in the dataset contains:
        --max_retries 10 \
        --num_threads 1
    ```
+
+5. **Judge the results**
+   ```bash
+   cd VideoEval-Pro
+   
+   # Set PYTHONPATH
+   export PYTHONPATH=.
+   
+   # Run judge script *gpt4o_judge.py* with the following parameters:
+   # --input_path: Path to save output results
+   # --output_path: Path to judged results
+   # --model_name: Version of the judge model
+   # --num_threads: Number of threads for parallel processing
+   
+   python tools/gpt4o_judge.py \
+       --input_path <path_to_saved_results> \
+       --output_path <path_to_judged_results> \
+       --model_name <model_version> \
+       --num_threads <num_threads>
+
+   E.g.:
+   python tools/gpt4o_judge.py \
+       --input_path ./results/qwen_results.jsonl \
+       --output_path ./results/qwen_results_judged.jsonl \
+       --model_name gpt-4o-2024-08-06 \
+       --num_threads 1
+   ```
+   **Note: the released results are judged by  *gpt-4o-2024-08-06***
