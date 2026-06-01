@@ -1,5 +1,5 @@
 # VideoEval-Pro
-This repository contains the evaluation code for the VideoEval-Pro. 
+This repository contains the evaluation code for the [VideoEval-Pro](https://arxiv.org/abs/2505.14640), which has been accepted to TMLR 2026.
 The data is available on HuggingFace: [VideoEval-Pro](https://huggingface.co/datasets/TIGER-Lab/VideoEval-Pro)
 
 ## Dataset Introduction
